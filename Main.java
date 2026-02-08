@@ -8,7 +8,8 @@ public class Main {
     private static StudentService service = new StudentService();
 
     public static void main(String[] args) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        int port = System.getenv("APP_PORT") != null ? Integer.parseInt(System.getenv("APP_PORT")) : 8080;
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         
         server.createContext("/", exchange -> {
             byte[] response = getFileContent("index.html").getBytes();
@@ -59,7 +60,7 @@ public class Main {
         
         server.setExecutor(null);
         server.start();
-        System.out.println("Server started on port 8080");
+        System.out.println("Server started on port " + port);
     }
     
     private static String getFileContent(String filename) throws IOException {
