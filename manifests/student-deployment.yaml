@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: student-app
+  template:
+    metadata:
+      labels:
+        app: student-app
+    spec:
+      containers:
+      - name: student-app
+        image: meghanautlapalli/devops-project:latest
+        ports:
+        - containerPort: 9090

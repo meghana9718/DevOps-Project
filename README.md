@@ -95,3 +95,23 @@ kubectl get services
 - Java 17+
 - Docker (for containerization)
 - Modern web browser (for frontend)
+
+## Jenkins Pipeline
+
+### Prerequisites
+1. Jenkins with Docker installed
+2. Docker Hub credentials added to Jenkins (ID: `dockerhub-credentials`)
+3. Update `DOCKER_REGISTRY` in Jenkinsfile with your Docker Hub username
+
+### Setup
+1. Create new Pipeline job in Jenkins
+2. Point to your Git repository
+3. Set Script Path to `Jenkinsfile`
+4. Run the pipeline
+
+### Pipeline Stages
+- **Checkout**: Clone repository
+- **Build**: Build Docker image
+- **Test**: Verify Java installation
+- **Push**: Push to Docker Hub
+- **Deploy**: Run container on port 9090
